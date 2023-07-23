@@ -18,7 +18,6 @@ from .forms import UserEditForm, PostEditForm, CommentEditForm
 
 
 class MainPostListView(ListView):
-
     model = Post
     template_name = "blog/index.html"
     queryset = post_published_query()
@@ -26,7 +25,6 @@ class MainPostListView(ListView):
 
 
 class CategoryPostListView(MainPostListView):
-
     template_name = "blog/category.html"
     category = None
 
@@ -44,7 +42,6 @@ class CategoryPostListView(MainPostListView):
 
 
 class UserPostsListView(MainPostListView):
-
     template_name = "blog/profile.html"
     author = None
 
@@ -62,7 +59,6 @@ class UserPostsListView(MainPostListView):
 
 
 class PostDetailView(DetailView):
-
     model = Post
     template_name = "blog/detail.html"
     post_data = None
@@ -94,7 +90,6 @@ class PostDetailView(DetailView):
 
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
-
     model = User
     form_class = UserEditForm
     template_name = "blog/user.html"
@@ -108,7 +103,6 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-
     model = Post
     form_class = PostEditForm
     template_name = "blog/create.html"
@@ -123,7 +117,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
-
     model = Post
     form_class = PostEditForm
     template_name = "blog/create.html"
@@ -139,7 +132,6 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
-
     model = Post
     template_name = "blog/create.html"
 
@@ -159,7 +151,6 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
-
     model = Comment
     form_class = CommentEditForm
     template_name = "blog/comment.html"
@@ -199,7 +190,6 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 
 class CommentUpdateView(CommentMixinView, UpdateView):
-
     form_class = CommentEditForm
 
 

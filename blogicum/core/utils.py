@@ -6,7 +6,6 @@ from django.utils import timezone
 
 
 def post_all_query():
-    """Вернуть все посты."""
     query_set = (
         Post.objects.select_related(
             "category",
@@ -20,7 +19,6 @@ def post_all_query():
 
 
 def post_published_query():
-    """Вернуть опубликованные посты."""
     query_set = post_all_query().filter(
         pub_date__lte=timezone.now(),
         is_published=True,

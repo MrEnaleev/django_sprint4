@@ -8,7 +8,6 @@ from core.utils import get_post_data
 
 
 class CommentMixinView(LoginRequiredMixin, View):
-
     model = Comment
     template_name = "blog/comment.html"
     pk_url_kwarg = "comment_pk"
