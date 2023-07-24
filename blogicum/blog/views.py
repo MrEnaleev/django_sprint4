@@ -205,5 +205,7 @@ class CommentUpdateView(CommentMixinView, UpdateView):
         context["page_title"] = self.page_title
         return context
 
+
 class CommentDeleteView(CommentMixinView, DeleteView):
-    page_title = "Удаление комментария" 
+    page_title = "Удаление комментария"
+    
