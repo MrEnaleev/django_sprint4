@@ -13,7 +13,7 @@ def post_all_query():
             "author",
         )
         .annotate(comment_count=Count("comments"))
-        .order_by("-pub_date")
+        .order_by("-pub_date") #если уберу, тесты не проходят
     )
     return query_set
 

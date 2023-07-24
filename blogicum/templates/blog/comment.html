@@ -1,26 +1,16 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
+
 {% block title %}
-  {% if '/edit_comment/' in request.path %}
-    Редактирование комментария
-  {% elif '/delete_comment/' in request.path %}
-    Удаление комментария
-  {% else %}
-    Создать комментарий
-  {% endif %}
+  {{ page_title }}
 {% endblock %}
+
 {% block content %}
   {% if user.is_authenticated %}
     <div class="col d-flex justify-content-center">
       <div class="card" style="width: 40rem;">
         <div class="card-header">
-          {% if '/edit_comment/' in request.path %}
-            Редактирование комментария
-          {% elif '/delete_comment/' in request.path %}
-            Удаление комментария
-          {% else %}
-            Создать комментарий
-          {% endif %}
+          {{ page_title }}
         </div>
         <div class="card-body">
           <form method="post"

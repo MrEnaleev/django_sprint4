@@ -13,6 +13,7 @@ from django.views.generic import (
 
 from core.utils import post_all_query, post_published_query, get_post_data
 from core.mixins import CommentMixinView
+
 from .models import Post, User, Category, Comment
 from .forms import UserEditForm, PostEditForm, CommentEditForm
 
@@ -155,6 +156,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     form_class = CommentEditForm
     template_name = "blog/comment.html"
     post_data = None
+    page_title = "Создать комментарий"
 
     def dispatch(self, request, *args, **kwargs):
         self.post_data = get_post_data(self.kwargs)
@@ -188,10 +190,20 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             fail_silently=True,
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = self.page_title
+        return context
+
 
 class CommentUpdateView(CommentMixinView, UpdateView):
     form_class = CommentEditForm
+    page_title = "Редактирование комментария"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = self.page_title
+        return context
 
 class CommentDeleteView(CommentMixinView, DeleteView):
-    ...
+    page_title = "Удаление комментария" 

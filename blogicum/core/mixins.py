@@ -11,6 +11,7 @@ class CommentMixinView(LoginRequiredMixin, View):
     model = Comment
     template_name = "blog/comment.html"
     pk_url_kwarg = "comment_pk"
+    page_title = None
 
     def dispatch(self, request, *args, **kwargs):
         if self.get_object().author != request.user:
