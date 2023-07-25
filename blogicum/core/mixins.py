@@ -23,6 +23,7 @@ class CommentMixinView(LoginRequiredMixin, View):
         pk = self.kwargs["pk"]
         return reverse("blog:post_detail", kwargs={"pk": pk})
 
+
 class PageTitleMixin:
     page_title = ""
 
