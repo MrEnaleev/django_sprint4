@@ -22,3 +22,11 @@ class CommentMixinView(LoginRequiredMixin, View):
     def get_success_url(self):
         pk = self.kwargs["pk"]
         return reverse("blog:post_detail", kwargs={"pk": pk})
+
+class PageTitleMixin:
+    page_title = ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = self.page_title
+        return context

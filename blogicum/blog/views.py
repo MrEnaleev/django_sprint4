@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
@@ -12,20 +13,22 @@ from django.views.generic import (
 )
 
 from core.utils import post_all_query, post_published_query, get_post_data
-from core.mixins import CommentMixinView
+from core.mixins import CommentMixinView, PageTitleMixin
 
 from .models import Post, User, Category, Comment
 from .forms import UserEditForm, PostEditForm, CommentEditForm
 
 
-class MainPostListView(ListView):
+class MainPostListView(PageTitleMixin, ListView):
     model = Post
     template_name = "blog/index.html"
     queryset = post_published_query()
-    paginate_by = 10
+    paginate_by = settings.PAGINATE_BY_CONSTANT
+    page_title = "Main Posts"
 
 
-class CategoryPostListView(MainPostListView):
+class CategoryPostListView(PageTitleMixin, ListView):
+    model = Post
     template_name = "blog/category.html"
     category = None
 
@@ -208,3 +211,8 @@ class CommentUpdateView(CommentMixinView, UpdateView):
 
 class CommentDeleteView(CommentMixinView, DeleteView):
     page_title = "Удаление комментария"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = self.page_title
+        return context
