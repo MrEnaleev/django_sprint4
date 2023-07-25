@@ -198,7 +198,5 @@ class CommentUpdateView(CommentMixinView, UpdateView):
     page_title = "Редактирование комментария"
 
 
-
 class CommentDeleteView(CommentMixinView, DeleteView):
     page_title = "Удаление комментария"
-
