@@ -192,26 +192,13 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             fail_silently=True,
         )
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["page_title"] = self.page_title
-        return context
-
 
 class CommentUpdateView(CommentMixinView, UpdateView):
     form_class = CommentEditForm
     page_title = "Редактирование комментария"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["page_title"] = self.page_title
-        return context
 
 
 class CommentDeleteView(CommentMixinView, DeleteView):
     page_title = "Удаление комментария"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["page_title"] = self.page_title
-        return context
