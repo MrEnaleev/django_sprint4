@@ -27,8 +27,7 @@ class MainPostListView(PageTitleMixin, ListView):
     page_title = "Main Posts"
 
 
-class CategoryPostListView(PageTitleMixin, ListView):
-    model = Post
+class CategoryPostListView(MainPostListView):
     template_name = "blog/category.html"
     category = None
 

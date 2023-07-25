@@ -12,7 +12,7 @@ def post_all_query():
             "location",
             "author",
         )
-        .annotate(comment_count=Count("comments"))
+        .annotate(comment_count=Count("comments"))        
     )
     return query_set
 
