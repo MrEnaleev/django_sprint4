@@ -12,7 +12,8 @@ def post_all_query():
             "location",
             "author",
         )
-        .annotate(comment_count=Count("comments"))        
+        .annotate(comment_count=Count("comments"))
+        .order_by("-pub_date")    
     )
     return query_set
 
