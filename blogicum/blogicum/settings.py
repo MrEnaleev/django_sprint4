@@ -116,4 +116,4 @@ LOGIN_URL = "login"
 
 CSRF_FAILURE_VIEW = "pages.views.csrf_failure"
 
-PAGINATE_BY_CONSTANT = 10
+PAGINATE_BY = 10

@@ -14,7 +14,13 @@
     <div class="col d-flex justify-content-center">
       <div class="card" style="width: 40rem;">
         <div class="card-header">
-          {{ page_title }}
+          {% if '/edit_comment/' in request.path %}
+            Редактирование комментария
+          {% elif '/delete_comment/' in request.path %}
+            Удаление комментария
+          {% else %}
+            Создать комментарий
+          {% endif %}
         </div>
         <div class="card-body">
           <form method="post"

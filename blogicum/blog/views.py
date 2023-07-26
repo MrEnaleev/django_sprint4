@@ -13,17 +13,16 @@ from django.views.generic import (
 )
 
 from core.utils import post_all_query, post_published_query, get_post_data
-from core.mixins import CommentMixinView, PageTitleMixin
-
+from core.mixins import CommentMixinView
 from .models import Post, User, Category, Comment
 from .forms import UserEditForm, PostEditForm, CommentEditForm
 
 
-class MainPostListView(PageTitleMixin, ListView):
+class MainPostListView(ListView):
     model = Post
     template_name = "blog/index.html"
     queryset = post_published_query()
-    paginate_by = settings.PAGINATE_BY_CONSTANT
+    paginate_by = settings.PAGINATE_BY
 
 
 class CategoryPostListView(MainPostListView):
@@ -157,7 +156,6 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     form_class = CommentEditForm
     template_name = "blog/comment.html"
     post_data = None
-    page_title = "Создать комментарий"
 
     def dispatch(self, request, *args, **kwargs):
         self.post_data = get_post_data(self.kwargs)
@@ -194,8 +192,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 class CommentUpdateView(CommentMixinView, UpdateView):
     form_class = CommentEditForm
-    page_title = "Редактирование комментария"
 
 
 class CommentDeleteView(CommentMixinView, DeleteView):
-    page_title = "Удаление комментария"
+    ...
