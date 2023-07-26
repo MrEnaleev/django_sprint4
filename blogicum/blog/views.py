@@ -24,7 +24,6 @@ class MainPostListView(PageTitleMixin, ListView):
     template_name = "blog/index.html"
     queryset = post_published_query()
     paginate_by = settings.PAGINATE_BY_CONSTANT
-    page_title = "Main Posts"
 
 
 class CategoryPostListView(MainPostListView):
